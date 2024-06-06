@@ -25,6 +25,8 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * This gone subscriber listens for removed pages.
+ *
+ * @internal this is a internal listener which should not be used directly
  */
 class GoneDocumentSubscriber implements EventSubscriberInterface
 {
@@ -77,9 +79,6 @@ class GoneDocumentSubscriber implements EventSubscriberInterface
         $this->environment = $environment;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribedEvents()
     {
         return [
@@ -113,7 +112,7 @@ class GoneDocumentSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     protected function getUrls(BasePageDocument $document)
     {
@@ -166,7 +165,7 @@ class GoneDocumentSubscriber implements EventSubscriberInterface
      * @param string $webspaceKey
      * @param string $locale
      *
-     * @return array
+     * @return string[]
      */
     protected function getHistoryUrls(
         ResourceLocatorStrategyInterface $resourceLocatorStrategy,

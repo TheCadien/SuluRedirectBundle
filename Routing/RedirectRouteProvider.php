@@ -29,10 +29,13 @@ class RedirectRouteProvider implements RouteProviderInterface
     private $redirectRouteRepository;
 
     /**
-     * @var array
+     * @var array<string, mixed>
      */
     private $defaultOptions;
 
+    /**
+     * @param array<string, mixed> $defaultOptions
+     */
     public function __construct(
         RedirectRouteRepositoryInterface $redirectRouteRepository,
         array $defaultOptions = []
@@ -41,9 +44,6 @@ class RedirectRouteProvider implements RouteProviderInterface
         $this->defaultOptions = $defaultOptions;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getRouteCollectionForRequest(Request $request): RouteCollection
     {
         // server encodes the url and symfony does not encode it
@@ -71,17 +71,11 @@ class RedirectRouteProvider implements RouteProviderInterface
         return $routeCollection;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getRouteByName($name): Route
     {
         throw new RouteNotFoundException('RedirectRouteProvider does not support getRouteByName.');
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getRoutesByNames($names = null): iterable
     {
         return [];
