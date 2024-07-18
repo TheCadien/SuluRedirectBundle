@@ -17,7 +17,6 @@ use Sulu\Bundle\RedirectBundle\Exception\RedirectRouteNotUniqueException;
 use Sulu\Bundle\RedirectBundle\Manager\RedirectRouteManagerInterface;
 use Sulu\Bundle\RouteBundle\Model\RouteInterface;
 
-
 /**
  * This gone subscriber listens for removed route entities.
  *
