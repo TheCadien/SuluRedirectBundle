@@ -16,18 +16,15 @@ use Sulu\Bundle\RedirectBundle\Entity\RedirectRoute;
 use Sulu\Bundle\RedirectBundle\Exception\RedirectRouteNotUniqueException;
 use Sulu\Bundle\RedirectBundle\Manager\RedirectRouteManagerInterface;
 use Sulu\Bundle\RouteBundle\Model\RouteInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+
 
 /**
  * This gone subscriber listens for removed route entities.
  *
  * @internal this is a internal listener which should not be used directly
  */
-class GoneEntitySubscriber implements ContainerAwareInterface
+class GoneEntitySubscriber
 {
-    use ContainerAwareTrait;
-
     /**
      * @var RedirectRouteManagerInterface
      */
