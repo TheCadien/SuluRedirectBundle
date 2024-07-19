@@ -14,7 +14,7 @@ namespace Sulu\Bundle\RedirectBundle\Tests\Unit\Controller;
 use PHPUnit\Framework\TestCase;
 use Sulu\Bundle\RedirectBundle\Controller\WebsiteRedirectController;
 use Sulu\Bundle\RedirectBundle\Model\RedirectRouteInterface;
-use Symfony\Component\HttpFoundation\ParameterBag;
+use Symfony\Component\HttpFoundation\InputBag;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -31,7 +31,7 @@ class RedirectControllerTest extends TestCase
     private $request;
 
     /**
-     * @var ParameterBag
+     * @var InputBag
      */
     private $queryBag;
 
@@ -45,7 +45,7 @@ class RedirectControllerTest extends TestCase
         $this->controller = new WebsiteRedirectController();
 
         $this->request = $this->prophesize(Request::class);
-        $this->queryBag = $this->prophesize(ParameterBag::class);
+        $this->queryBag = $this->prophesize(InputBag::class);
         $this->redirectRoute = $this->prophesize(RedirectRouteInterface::class);
 
         $this->request->reveal()->query = $this->queryBag->reveal();
