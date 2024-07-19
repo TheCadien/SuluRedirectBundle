@@ -45,18 +45,16 @@ class RedirectControllerTest extends TestCase
         $this->controller = new WebsiteRedirectController();
 
         $this->request = $this->prophesize(Request::class);
-        $this->queryBag = $this->prophesize(InputBag::class);
+        $this->queryBag = new InputBag();
         $this->redirectRoute = $this->prophesize(RedirectRouteInterface::class);
 
-        $this->request->reveal()->query = $this->queryBag->reveal();
+        $this->request->reveal()->query = $this->queryBag;
     }
 
     public function testRedirect()
     {
         $target = '/test';
         $statusCode = 301;
-
-        $this->queryBag->all()->willReturn([]);
 
         $this->redirectRoute->getTarget()->willReturn($target);
         $this->redirectRoute->getStatusCode()->willReturn($statusCode);
@@ -74,7 +72,7 @@ class RedirectControllerTest extends TestCase
         $statusCode = 301;
         $query = ['test' => 1, 'my-parameter' => 'awesome sulu'];
 
-        $this->queryBag->all()->willReturn($query);
+        $this->queryBag->add($query);
 
         $this->redirectRoute->getTarget()->willReturn($target);
         $this->redirectRoute->getStatusCode()->willReturn($statusCode);
@@ -93,8 +91,6 @@ class RedirectControllerTest extends TestCase
     {
         $target = 'http://captain-sulu.io/test';
         $statusCode = 301;
-
-        $this->queryBag->all()->willReturn([]);
 
         $this->redirectRoute->getTarget()->willReturn($target);
         $this->redirectRoute->getStatusCode()->willReturn($statusCode);
@@ -115,7 +111,7 @@ class RedirectControllerTest extends TestCase
         $statusCode = 301;
         $query = ['test' => 1, 'my-parameter' => 'awesome sulu'];
 
-        $this->queryBag->all()->willReturn($query);
+        $this->queryBag->add($query);
 
         $this->redirectRoute->getTarget()->willReturn($target);
         $this->redirectRoute->getStatusCode()->willReturn($statusCode);
