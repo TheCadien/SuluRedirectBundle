@@ -32,7 +32,7 @@ class RedirectControllerTest extends TestCase
     private $request;
 
     /**
-     * @var InputBag
+     * @var InputBag|ParameterBag
      */
     private $queryBag;
 
