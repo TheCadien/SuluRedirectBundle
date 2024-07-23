@@ -361,11 +361,6 @@ parameters:
 			path: Tests/Unit/Controller/RedirectControllerTest.php
 
 		-
-			message: "#^Property Sulu\\\\Bundle\\\\RedirectBundle\\\\Tests\\\\Unit\\\\Controller\\\\RedirectControllerTest\\:\\:\\$queryBag \\(Symfony\\\\Component\\\\HttpFoundation\\\\ParameterBag\\) does not accept Prophecy\\\\Prophecy\\\\ObjectProphecy\\<Symfony\\\\Component\\\\HttpFoundation\\\\ParameterBag\\>\\.$#"
-			count: 1
-			path: Tests/Unit/Controller/RedirectControllerTest.php
-
-		-
 			message: "#^Property Sulu\\\\Bundle\\\\RedirectBundle\\\\Tests\\\\Unit\\\\Controller\\\\RedirectControllerTest\\:\\:\\$redirectRoute \\(Sulu\\\\Bundle\\\\RedirectBundle\\\\Model\\\\RedirectRouteInterface\\) does not accept Prophecy\\\\Prophecy\\\\ObjectProphecy\\<Sulu\\\\Bundle\\\\RedirectBundle\\\\Model\\\\RedirectRouteInterface\\>\\.$#"
 			count: 1
 			path: Tests/Unit/Controller/RedirectControllerTest.php
