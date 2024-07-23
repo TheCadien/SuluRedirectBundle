@@ -356,11 +356,6 @@ parameters:
 			path: Tests/Unit/Controller/RedirectControllerTest.php
 
 		-
-			message: "#^Property Symfony\\\\Component\\\\HttpFoundation\\\\Request\\:\\:\\$query \\(Symfony\\\\Component\\\\HttpFoundation\\\\InputBag\\<string\\>\\) does not accept Symfony\\\\Component\\\\HttpFoundation\\\\ParameterBag\\.$#"
-			count: 4
-			path: Tests/Unit/Controller/RedirectControllerTest.php
-
-		-
 			message: "#^Cannot access offset 'exceptions' on mixed\\.$#"
 			count: 2
 			path: Tests/Unit/Controller/RedirectRouteImportControllerTest.php

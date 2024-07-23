@@ -14,8 +14,6 @@ namespace Sulu\Bundle\RedirectBundle\Tests\Unit\Controller;
 use PHPUnit\Framework\TestCase;
 use Sulu\Bundle\RedirectBundle\Controller\WebsiteRedirectController;
 use Sulu\Bundle\RedirectBundle\Model\RedirectRouteInterface;
-use Symfony\Component\HttpFoundation\InputBag;
-use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -27,11 +25,6 @@ class RedirectControllerTest extends TestCase
     private $controller;
 
     /**
-     * @var InputBag|ParameterBag
-     */
-    private $queryBag;
-
-    /**
      * @var RedirectRouteInterface
      */
     private $redirectRoute;
@@ -39,8 +32,6 @@ class RedirectControllerTest extends TestCase
     protected function setUp(): void
     {
         $this->controller = new WebsiteRedirectController();
-
-        $this->queryBag = class_exists(InputBag::class) ? new InputBag() : new ParameterBag();
         $this->redirectRoute = $this->prophesize(RedirectRouteInterface::class);
     }
 
@@ -49,8 +40,7 @@ class RedirectControllerTest extends TestCase
         $target = '/test';
         $statusCode = 301;
 
-        $request = Request::create($target);
-        $request->query = $this->queryBag;
+        $request = Request::create('http://captain-sulu.io/');
 
         $this->redirectRoute->getTarget()->willReturn($target);
         $this->redirectRoute->getStatusCode()->willReturn($statusCode);
@@ -68,10 +58,9 @@ class RedirectControllerTest extends TestCase
         $statusCode = 301;
         $query = ['test' => 1, 'my-parameter' => 'awesome sulu'];
 
-        $this->queryBag->add($query);
-
-        $request = Request::create($target);
-        $request->query = $this->queryBag;
+        $request = Request::create('http://captain-sulu.io/');
+        $request->query->set('test', $query['test']);
+        $request->query->set('my-parameter', $query['my-parameter']);
 
         $this->redirectRoute->getTarget()->willReturn($target);
         $this->redirectRoute->getStatusCode()->willReturn($statusCode);
@@ -91,8 +80,7 @@ class RedirectControllerTest extends TestCase
         $target = 'http://captain-sulu.io/test';
         $statusCode = 301;
 
-        $request = Request::create($target);
-        $request->query = $this->queryBag;
+        $request = Request::create('http://captain-sulu.io/');
 
         $this->redirectRoute->getTarget()->willReturn($target);
         $this->redirectRoute->getStatusCode()->willReturn($statusCode);
@@ -113,10 +101,9 @@ class RedirectControllerTest extends TestCase
         $statusCode = 301;
         $query = ['test' => 1, 'my-parameter' => 'awesome sulu'];
 
-        $this->queryBag->add($query);
-
-        $request = Request::create($target);
-        $request->query = $this->queryBag;
+        $request = Request::create('http://captain-sulu.io/');
+        $request->query->set('test', $query['test']);
+        $request->query->set('my-parameter', $query['my-parameter']);
 
         $this->redirectRoute->getTarget()->willReturn($target);
         $this->redirectRoute->getStatusCode()->willReturn($statusCode);
