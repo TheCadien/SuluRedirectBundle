@@ -325,10 +325,6 @@ parameters:
 			count: 4
 			path: Tests/Unit/Controller/RedirectControllerTest.php
 
-		-
-			message: "#^Cannot call method willReturn\\(\\) on array\\.$#"
-			count: 3
-			path: Tests/Unit/Controller/RedirectControllerTest.php
 
 		-
 			message: "#^Cannot call method willReturn\\(\\) on int\\.$#"
