@@ -27,11 +27,6 @@ class RedirectControllerTest extends TestCase
     private $controller;
 
     /**
-     * @var Request
-     */
-    private $request;
-
-    /**
      * @var InputBag|ParameterBag
      */
     private $queryBag;
@@ -45,11 +40,8 @@ class RedirectControllerTest extends TestCase
     {
         $this->controller = new WebsiteRedirectController();
 
-        $this->request = $this->prophesize(Request::class);
         $this->queryBag = class_exists(InputBag::class) ? new InputBag() : new ParameterBag();
         $this->redirectRoute = $this->prophesize(RedirectRouteInterface::class);
-
-        $this->request->reveal()->query = $this->queryBag;
     }
 
     public function testRedirect()
@@ -57,10 +49,13 @@ class RedirectControllerTest extends TestCase
         $target = '/test';
         $statusCode = 301;
 
+        $request = Request::create($target);
+        $request->query = $this->queryBag;
+
         $this->redirectRoute->getTarget()->willReturn($target);
         $this->redirectRoute->getStatusCode()->willReturn($statusCode);
 
-        $response = $this->controller->redirect($this->request->reveal(), $this->redirectRoute->reveal());
+        $response = $this->controller->redirect($request, $this->redirectRoute->reveal());
 
         $this->assertInstanceOf(RedirectResponse::class, $response);
         $this->assertEquals($target, $response->getTargetUrl());
@@ -75,10 +70,13 @@ class RedirectControllerTest extends TestCase
 
         $this->queryBag->add($query);
 
+        $request = Request::create($target);
+        $request->query = $this->queryBag;
+
         $this->redirectRoute->getTarget()->willReturn($target);
         $this->redirectRoute->getStatusCode()->willReturn($statusCode);
 
-        $response = $this->controller->redirect($this->request->reveal(), $this->redirectRoute->reveal());
+        $response = $this->controller->redirect($request, $this->redirectRoute->reveal());
 
         $this->assertInstanceOf(RedirectResponse::class, $response);
         $this->assertEquals(
@@ -93,10 +91,13 @@ class RedirectControllerTest extends TestCase
         $target = 'http://captain-sulu.io/test';
         $statusCode = 301;
 
+        $request = Request::create($target);
+        $request->query = $this->queryBag;
+
         $this->redirectRoute->getTarget()->willReturn($target);
         $this->redirectRoute->getStatusCode()->willReturn($statusCode);
 
-        $response = $this->controller->redirect($this->request->reveal(), $this->redirectRoute->reveal());
+        $response = $this->controller->redirect($request, $this->redirectRoute->reveal());
 
         $this->assertInstanceOf(RedirectResponse::class, $response);
         $this->assertEquals(
@@ -114,10 +115,13 @@ class RedirectControllerTest extends TestCase
 
         $this->queryBag->add($query);
 
+        $request = Request::create($target);
+        $request->query = $this->queryBag;
+
         $this->redirectRoute->getTarget()->willReturn($target);
         $this->redirectRoute->getStatusCode()->willReturn($statusCode);
 
-        $response = $this->controller->redirect($this->request->reveal(), $this->redirectRoute->reveal());
+        $response = $this->controller->redirect($request, $this->redirectRoute->reveal());
 
         $this->assertInstanceOf(RedirectResponse::class, $response);
         $this->assertEquals(
